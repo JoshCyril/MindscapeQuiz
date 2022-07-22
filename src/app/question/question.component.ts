@@ -18,6 +18,7 @@ export class QuestionComponent implements OnInit {
   interval$:any;
   progess:string = "0";
   isQuizCompeleted:boolean = false;
+  numGen:number =0;
   constructor(private questionService: QuestionService) { }
 
   ngOnInit(): void {
@@ -25,13 +26,27 @@ export class QuestionComponent implements OnInit {
     this.getAllQuestions();
     this.startCounter();
   }
+  randomNumber(min:number, max:number) { 
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min; 
+  } 
 
-  getAllQuestions(){
-    this.questionService.getQuestionJson()
-    .subscribe(res =>{
-      this.questionList = res.questions;
+ async getAllQuestions(){
+    (this.questionService.getQuestionJson())
+    .subscribe(async (res: { results: any; }) =>{
+      this.questionList = res.results
+      console.log(this.questionList)
+      this.questionList.forEach( (vals: any) => {
+        //console.log(vals.incorrect_answers[0])
+        this.numGen = this.randomNumber(0, vals.incorrect_answers.length)
+        vals.incorrect_answers[vals.incorrect_answers.length] = vals.incorrect_answers[this.numGen];
+        vals.incorrect_answers[this.numGen] = vals.correct_answer;
+      })
     })
-  }
+    }
+
+    
 
   nextQuestion(){
     this.currentQuestion ++
@@ -43,12 +58,12 @@ export class QuestionComponent implements OnInit {
     // this.currentQuestion = this.currentQuestion < 0 ? 0: this.currentQuestion
   }
 
-  answer(currentQno:number, option:any){
+  answer(currentQno:number, optionS:any, optionC:any){
     if(currentQno === this.questionList.length){
       this.isQuizCompeleted = true;
       this.stopCounter()
     }
-    if(option.correct){
+    if(optionS === optionC){
       this.points += 10;
       this.correctAnswer++;
       setTimeout(()=>{

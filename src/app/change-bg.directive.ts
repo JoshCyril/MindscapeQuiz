@@ -5,19 +5,19 @@ import { Directive,ElementRef, HostListener, Input, Renderer2 } from '@angular/c
 })
 export class ChangeBgDirective {
 
-  @Input() isCorrect: boolean = false;
+  @Input() ansS: string = "";
+  @Input() ansC: string = "";
+  //isCorrect: boolean = false;
 
   constructor(private el: ElementRef, private render: Renderer2) { }
 
   @HostListener('click') answer(){
-    if(this.isCorrect){
+    if(this.ansC == this.ansS){
       this.render.setStyle(this.el.nativeElement, 'background', 'green')
       this.render.setStyle(this.el.nativeElement, 'color', 'white')
-      this.render.setStyle(this.el.nativeElement, 'border', '2px solid grey')
     }else{
       this.render.setStyle(this.el.nativeElement, 'background', 'red')
       this.render.setStyle(this.el.nativeElement, 'color', 'white')
-      this.render.setStyle(this.el.nativeElement, 'border', '2px solid grey')
     }
   }
 }

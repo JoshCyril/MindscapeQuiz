@@ -8,7 +8,14 @@ export class QuestionService {
 
   constructor(private http: HttpClient) { }
 
-  getQuestionJson(){
-    return this.http.get<any>("assets/questions.json");
-  }
+getQuestionJson(){
+    //return this.http.get<any>("assets/questions.json");
+    // fetch('https://opentdb.com/api.php?amount=10&category=18')  
+    // .then(function(resp) { return resp.json() }) // Convert data to json
+    // .then((data) => {
+    //   console.log(data.results);
+      
+    // })
+    return this.http.get<any>('https://opentdb.com/api.php?amount=10&category=18')
+}
 }
