@@ -22,7 +22,7 @@ export class QuestionComponent implements OnInit {
   constructor(private questionService: QuestionService) { }
 
   ngOnInit(): void {
-    this.name =localStorage.getItem('name')!;
+    this.name =localStorage.getItem('named')!;
     this.getAllQuestions();
     this.startCounter();
   }
@@ -79,7 +79,7 @@ export class QuestionComponent implements OnInit {
         this.resetCounter();
         this.getProgessPercent()
       },1000);
-      this.points -= 10;
+      // this.points -= 10;
     }
   }
 
@@ -90,7 +90,7 @@ export class QuestionComponent implements OnInit {
       if(this.counter === 0){
         this.currentQuestion++;
         this.counter =60
-        this.points -=10
+        // this.points -=10
       }
     })
     setTimeout(()=>{

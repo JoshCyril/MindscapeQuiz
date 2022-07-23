@@ -1,17 +1,25 @@
-<div class="container bg-light py-5">
-    <h1 class="display-5 fw-bold">Welcome to MindscapeQuiz</h1>
-    <p class="col-md-8 fs-4">This quiz contain 10 questions. Each Question holds 10 points.</p>
-    <h3 class="fw-bold">Rules:</h3>
-    <ol>
-        <li>Correct question gives you +10 points.</li>
-        <li>InCorrect question gives you -10 points.</li>
-        <li>You will have 10 seconds to answer the each question.</li>
-        <li>Refreshing the page will restart the quiz.</li>
-    </ol>
-    <h4 class="text-center"> All the best!!!</h4>
-    <div class="name col-md-4 my-3">
-        <label for="">Enter your name:</label>
-        <input #name type="text" class="form-control" placeholder="Name">
-    </div>
-    <button class="btn btn-primary btn-lg" routerLink="/question" (click)="StartQuiz()">Start the quiz</button>
+<div class="container py-5">
+      
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <span class="col-md-8 fs-4">The Quiz on
+            <!-- class="form-control" -->
+        <select formControlName="website"  >
+            <option *ngFor="let category of categories" >{{category}}</option>
+        </select>
+         contains 10 questions.</span>
+
+        <h3 class="fw-bold">Rules:</h3>
+        <ol>
+            <li>Correct question gives you +10 points.</li>
+            <li>InCorrect question gives you 0 points.</li>
+            <li>You will have 60 seconds to answer the each question.</li>
+            <li>Refreshing the page will restart the quiz.</li>
+        </ol>
+        <!-- [disabled]="!form.valid -->
+        <input class="form-control" formControlName="username" type="text" placeholder="Name">
+        <!-- '(click)="StartQuiz()' -->
+        <button type="submit" class="btn btn-primary">Start the quiz</button>
+        <h4 class="text-center"> All the best!!!</h4>
+    </form>
+
 </div>

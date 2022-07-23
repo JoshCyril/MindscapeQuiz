@@ -16,6 +16,8 @@ getQuestionJson(){
     //   console.log(data.results);
       
     // })
-    return this.http.get<any>('https://opentdb.com/api.php?amount=10&category=18')
+    let QuizT =localStorage.getItem('Quiztype')!;
+    return this.http.get<any>(QuizT)
+      // 'https://opentdb.com/api.php?amount=10&category=18')
 }
 }
