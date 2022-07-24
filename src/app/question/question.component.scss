@@ -1,3 +1,5 @@
+$color:#0dcaf0;
+
 .card{
     max-width: 800px;
     margin: 0 auto;
@@ -6,15 +8,30 @@
 }
 
 li{
-    list-style-type: none;
+    list-style-type:none;
     cursor: pointer;
     margin: 10px 0;
+    border: 0px solid $color;
+    border-radius: 15px;
+    ;
 }
 
-li .card:hover{
-    border: 1px solid blue;
+li .card{
+    border: 1px solid $color;
+    border-radius: 15px;
+    padding-left: 15px;
+    &:hover{
+        border-left: 8px solid $color;
+        border-radius: 15px;
+        padding-left: 8px;
+    }
 }
+
 
 ol{
     padding:0;
+}
+
+.badgeMedium{
+    font-size: 10px;
 }

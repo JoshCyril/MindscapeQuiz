@@ -18,6 +18,7 @@ export class QuestionComponent implements OnInit {
   interval$:any;
   progess:string = "0";
   isQuizCompeleted:boolean = false;
+  isQuizLoaded:boolean = false;
   numGen:number =0;
   constructor(private questionService: QuestionService) { }
 
@@ -44,6 +45,9 @@ export class QuestionComponent implements OnInit {
         vals.incorrect_answers[this.numGen] = vals.correct_answer;
       })
     })
+      setTimeout(()=>{
+        this.isQuizLoaded = true;
+      },1800);
     }
 
     
